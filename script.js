@@ -290,8 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await fetch('https://sbiixla.app.n8n.cloud/webhook/contact-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        mode: 'no-cors'
+        body: JSON.stringify(data)
       });
     } catch (err) {
       // Silently handle — show success regardless for UX
@@ -305,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Smooth scroll for anchor links ──
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href === '#') return;
       e.preventDefault();
