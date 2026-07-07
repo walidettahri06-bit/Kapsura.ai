@@ -240,48 +240,23 @@ ul { list-style: none; }
   transform: scale(1.05);
 }
 
-/* --- Kapsura Logo SVG Animations --- */
-.logo-svg {
+/* --- Kapsura Logo Image Animations --- */
+.logo-img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   opacity: 0;
-  transform-origin: center;
   animation: logo-fade-in 1.2s var(--ease-out) forwards, logo-glow-pulse 4s ease-in-out infinite 1.2s;
-}
-
-.logo-path {
-  stroke-dasharray: 120;
-  stroke-dashoffset: 120;
-  animation: logo-draw 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.logo-path.stem {
-  animation-delay: 0.1s;
-}
-.logo-path.diag {
-  animation-delay: 0.3s;
-}
-.logo-path.branch-outer {
-  animation-delay: 0.5s;
-}
-.logo-path.branch-inner {
-  animation-delay: 0.7s;
 }
 
 @keyframes logo-fade-in {
   from {
     opacity: 0;
-    transform: scale(0.8) rotate(-8deg);
+    transform: scale(0.85);
   }
   to {
     opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
-@keyframes logo-draw {
-  to {
-    stroke-dashoffset: 0;
+    transform: scale(1);
   }
 }
 
@@ -2424,15 +2399,10 @@ body::after {
   animation: preloader-logo-pulse 2s ease-in-out infinite;
 }
 
-.preloader-svg {
+.preloader-logo-img {
   width: 100%;
   height: 100%;
-}
-
-.preloader-svg .logo-path {
-  stroke-dasharray: 120;
-  stroke-dashoffset: 120;
-  animation: logo-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  object-fit: contain;
 }
 
 .preloader-status {
