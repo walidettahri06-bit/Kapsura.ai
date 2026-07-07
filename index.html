@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kapsura AI Automation Studio — Intelligent automation systems for restaurants, clinics, salons, gyms, and local businesses. Handle customer conversations, bookings, and lead qualification 24/7.">
+  <meta name="keywords" content="AI automation, business automation, chatbot, booking automation, lead qualification, restaurant AI, clinic automation">
+  <meta name="author" content="Kapsura">
+  <meta property="og:title" content="Kapsura — AI Automation Studio">
+  <meta property="og:description" content="Build intelligent automation systems that handle customer conversations, bookings, follow-ups, and lead qualification — 24/7.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kapsura — AI Automation Studio">
+  <meta name="twitter:description" content="AI-powered business automation for local businesses.">
+  <title>Kapsura — AI Automation Studio</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23030304'/%3E%3Cg stroke='%2310B981' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none'%3E%3Cpath d='M45 15 L45 32 L40 37 L40 58 L45 63 L45 85'/%3E%3Cpath d='M68 35 L30 60'/%3E%3Cpath d='M52 45 L70 63 L65 68 L65 85'/%3E%3Cpath d='M40 58 L58 76 L53 81 L53 85'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+
+  <!-- ===== PRELOADER ===== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        <svg viewBox="0 0 100 100" class="preloader-svg" fill="none" stroke="#10B981" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 45 15 L 45 32 L 40 37 L 40 58 L 45 63 L 45 85" class="logo-path stem" />
+          <path d="M 68 35 L 30 60" class="logo-path diag" />
+          <path d="M 52 45 L 70 63 L 65 68 L 65 85" class="logo-path branch-outer" />
+          <path d="M 40 58 L 58 76 L 53 81 L 53 85" class="logo-path branch-inner" />
+        </svg>
+      </div>
+      <div class="preloader-status">
+        <div class="status-item" id="status1">
+          <span class="status-indicator"></span>
+          AI Engine Online
+        </div>
+        <div class="status-item" id="status2">
+          <span class="status-indicator"></span>
+          Automation Systems Ready
+        </div>
+        <div class="status-item" id="status3">
+          <span class="status-indicator"></span>
+          Customer Agents Active
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <span class="logo-mark">
+          <svg viewBox="0 0 100 100" class="logo-svg" fill="none" stroke="url(#logoSweepNav)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="logoSweepNav" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#10B981" />
+                <stop offset="35%" stop-color="#10B981" />
+                <stop offset="50%" stop-color="#a7f3d0" />
+                <stop offset="65%" stop-color="#10B981" />
+                <stop offset="100%" stop-color="#10B981" />
+                <animateTransform 
+                  attributeName="gradientTransform" 
+                  type="translate" 
+                  from="-1.5,-1.5" to="1.5,1.5" 
+                  dur="3s" 
+                  repeatCount="indefinite" />
+              </linearGradient>
+            </defs>
+            <path d="M 45 15 L 45 32 L 40 37 L 40 58 L 45 63 L 45 85" class="logo-path stem" />
+            <path d="M 68 35 L 30 60" class="logo-path diag" />
+            <path d="M 52 45 L 70 63 L 65 68 L 65 85" class="logo-path branch-outer" />
+            <path d="M 40 58 L 58 76 L 53 81 L 53 85" class="logo-path branch-inner" />
+          </svg>
+        </span>
+        Kapsura
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#solutions">Solutions</a>
+        <a href="#industries">Industries</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="nav-cta">Book Free Automation Audit</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero section" id="hero">
+    <div class="grid-bg"></div>
+    <div class="particle-field" id="heroParticles"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="pulse"></span>
+          AI Automation Studio
+        </div>
+        <h1 class="hero-title reveal reveal-delay-1">
+          Your Business.<br>
+          <span class="accent-text">Automated by AI.</span>
+        </h1>
+        <p class="hero-subtitle reveal reveal-delay-2">
+          Kapsura builds intelligent automation systems that handle customer conversations, bookings, follow-ups, and lead qualification — 24/7.
+        </p>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="#contact" class="btn-primary">
+            Get Free Automation Audit
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#how-it-works" class="btn-secondary">
+            See How It Works
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal reveal-delay-2">
+        <div class="interface-panel">
+          <div class="interface-header">
+            <div class="dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span class="title">kapsura.ai — automation engine</span>
+            <span class="status">
+              <span class="status-dot"></span>
+              Active
+            </span>
+          </div>
+          <div class="interface-body">
+            <div class="chat-msg">
+              <span class="chat-avatar customer">C</span>
+              <div>
+                <div class="chat-label customer-label">Customer</div>
+                <div class="chat-bubble customer-bubble">Can I book a table for tomorrow?</div>
+              </div>
+            </div>
+            <div class="chat-msg">
+              <span class="chat-avatar ai">K</span>
+              <div>
+                <div class="chat-label ai-label">Kapsura AI</div>
+                <div class="chat-bubble ai-bubble">Of course! We have availability at 7 PM and 8:30 PM. Which would you prefer?</div>
+              </div>
+            </div>
+            <div class="chat-msg">
+              <span class="chat-avatar customer">C</span>
+              <div>
+                <div class="chat-label customer-label">Customer</div>
+                <div class="chat-bubble customer-bubble">7 PM sounds great, for 4 people.</div>
+              </div>
+            </div>
+            <div class="system-block">
+              <div class="sys-title">System Actions</div>
+              <div class="sys-item">
+                <span class="sys-check">✓</span>
+                Booking confirmed — 7 PM, 4 guests
+              </div>
+              <div class="sys-item">
+                <span class="sys-check">✓</span>
+                Confirmation sent to customer
+              </div>
+              <div class="sys-item">
+                <span class="sys-check">✓</span>
+                Owner notification delivered
+              </div>
+            </div>
+          </div>
+          <div class="interface-sidebar">
+            <div class="sidebar-indicator">
+              <span class="ind-dot"></span>
+              NLP engine
+            </div>
+            <div class="sidebar-indicator">
+              <span class="ind-dot cyan"></span>
+              Booking API
+            </div>
+            <div class="sidebar-indicator">
+              <span class="ind-dot purple"></span>
+              Notify service
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GLOW DIVIDER ===== -->
+  <div class="glow-divider"></div>
+
+  <!-- ===== TRUST ===== -->
+  <section class="trust section" id="industries">
+    <div class="container">
+      <p class="trust-title reveal">Built for businesses that need faster customer response</p>
+      <div class="trust-grid">
+        <div class="trust-item reveal reveal-delay-1">
+          <div class="trust-icon">🍽️</div>
+          <span class="trust-name">Restaurants</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-1">
+          <div class="trust-icon">🏥</div>
+          <span class="trust-name">Clinics</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <div class="trust-icon">💇</div>
+          <span class="trust-name">Salons</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <div class="trust-icon">🏋️</div>
+          <span class="trust-name">Gyms</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-3">
+          <div class="trust-icon">🏠</div>
+          <span class="trust-name">Real Estate</span>
+        </div>
+        <div class="trust-item reveal reveal-delay-3">
+          <div class="trust-icon">🏪</div>
+          <span class="trust-name">Local Businesses</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROBLEMS ===== -->
+  <section class="section" id="problems">
+    <div class="container">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal">Your customers expect<br>instant answers.</h2>
+      <p class="section-subtitle reveal reveal-delay-1">Most businesses lose revenue every day because they can't respond fast enough.</p>
+
+      <div class="problems-grid">
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-icon">💬</div>
+          <h3 class="problem-title">Missed Messages</h3>
+          <p class="problem-desc">Customers leave when nobody responds. Every unanswered message is lost revenue.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-icon">⏳</div>
+          <h3 class="problem-title">Manual Tasks</h3>
+          <p class="problem-desc">Employees waste hours doing repetitive work that could be automated instantly.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-3">
+          <div class="problem-icon">📉</div>
+          <h3 class="problem-title">Lost Opportunities</h3>
+          <p class="problem-desc">Leads disappear without follow-up. No system means no second chance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GLOW DIVIDER ===== -->
+  <div class="glow-divider"></div>
+
+  <!-- ===== SOLUTIONS ===== -->
+  <section class="section" id="solutions">
+    <div class="container">
+      <div class="section-label reveal">The Solution</div>
+      <h2 class="section-title reveal">One AI system.<br>Multiple business operations.</h2>
+      <p class="section-subtitle reveal reveal-delay-1">Kapsura replaces scattered tools with a single intelligent automation layer.</p>
+
+      <div class="solutions-list reveal reveal-delay-2">
+        <div class="solution-row">
+          <span class="solution-number">01</span>
+          <div class="solution-info">
+            <h3>AI Conversations</h3>
+            <p>Automatically answer customer questions across WhatsApp, SMS, web chat, and social media.</p>
+          </div>
+          <div class="solution-icon-wrap">💬</div>
+        </div>
+        <div class="solution-row">
+          <span class="solution-number">02</span>
+          <div class="solution-info">
+            <h3>Smart Booking</h3>
+            <p>Handle appointments, reservations, and scheduling without human intervention.</p>
+          </div>
+          <div class="solution-icon-wrap">📅</div>
+        </div>
+        <div class="solution-row">
+          <span class="solution-number">03</span>
+          <div class="solution-info">
+            <h3>Lead Qualification</h3>
+            <p>Identify high-value customers automatically and route them to your sales team.</p>
+          </div>
+          <div class="solution-icon-wrap">🎯</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="section-label reveal" style="justify-content:center;">Process</div>
+        <h2 class="section-title reveal">How it works</h2>
+        <p class="section-subtitle reveal reveal-delay-1" style="margin:0 auto;">From first contact to completed task — fully automated.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-step reveal reveal-delay-1">
+          <div class="step-number">01</div>
+          <p class="step-title">Customer contacts your business</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-2">
+          <div class="step-number">02</div>
+          <p class="step-title">AI understands the request</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-3">
+          <div class="step-number">03</div>
+          <p class="step-title">Automation executes the task</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-4">
+          <div class="step-number">04</div>
+          <p class="step-title">Business receives results</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GLOW DIVIDER ===== -->
+  <div class="glow-divider"></div>
+
+  <!-- ===== LIVE DEMO ===== -->
+  <section class="demo-section section" id="demo">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="section-label reveal" style="justify-content:center;">Live Demo</div>
+        <h2 class="section-title reveal">See Kapsura in action</h2>
+        <p class="section-subtitle reveal reveal-delay-1" style="margin:0 auto;">Watch how AI handles a real customer conversation in seconds.</p>
+      </div>
+
+      <div class="demo-wrapper reveal reveal-delay-2">
+        <div class="demo-panel">
+          <div class="scan-line-effect"></div>
+          <div class="demo-header">
+            <div class="demo-header-left">
+              <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <span class="title">ai_chat_simulation</span>
+            </div>
+            <span class="status">
+              <span class="status-dot"></span>
+              Live
+            </span>
+          </div>
+          <div class="demo-body" id="demoBody">
+            <!-- Messages injected by JS -->
+          </div>
+          <div class="demo-footer">
+            <button class="btn-replay" id="btnReplay">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8a6 6 0 1 1 1.76 4.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 12V8h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Replay Demo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ROI ===== -->
+  <section class="section" id="roi">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="section-label reveal" style="justify-content:center;">Business Impact</div>
+        <h2 class="section-title reveal">Measurable results from day one</h2>
+      </div>
+
+      <div class="roi-grid">
+        <div class="roi-card reveal reveal-delay-1">
+          <div class="roi-value" data-target="40" data-suffix="h+">0h+</div>
+          <div class="roi-label">Hours saved per month</div>
+        </div>
+        <div class="roi-card reveal reveal-delay-2">
+          <div class="roi-value" data-target="3" data-suffix="x">0x</div>
+          <div class="roi-label">More leads captured</div>
+        </div>
+        <div class="roi-card reveal reveal-delay-3">
+          <div class="roi-value" data-target="90" data-suffix="%">0%</div>
+          <div class="roi-label">Faster response time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GLOW DIVIDER ===== -->
+  <div class="glow-divider"></div>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact-section section" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info reveal">
+          <div class="section-label">Get Started</div>
+          <h2>Let's automate<br>your business.</h2>
+          <p>Book a free automation audit. We'll analyze your workflows, identify opportunities, and show you exactly how Kapsura can save you time and capture more revenue.</p>
+          <div class="contact-features">
+            <div class="contact-feature">
+              <span class="cf-icon">✓</span>
+              Free workflow analysis
+            </div>
+            <div class="contact-feature">
+              <span class="cf-icon">✓</span>
+              Custom automation roadmap
+            </div>
+            <div class="contact-feature">
+              <span class="cf-icon">✓</span>
+              No commitment required
+            </div>
+            <div class="contact-feature">
+              <span class="cf-icon">✓</span>
+              Response within 24 hours
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal reveal-delay-1">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="John Smith" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="john@business.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+              </div>
+              <div class="form-group">
+                <label for="business">Business</label>
+                <input type="text" id="business" name="business" placeholder="Your business name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your business and what you'd like to automate..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit" id="btnSubmit">
+              Get My Free Automation Analysis
+            </button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">✓</div>
+            <h3>Request Received</h3>
+            <p>Thanks! Kapsura will review your request and contact you within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 100 100" class="logo-svg" fill="none" stroke="url(#logoSweepFooter)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <linearGradient id="logoSweepFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#10B981" />
+                  <stop offset="35%" stop-color="#10B981" />
+                  <stop offset="50%" stop-color="#a7f3d0" />
+                  <stop offset="65%" stop-color="#10B981" />
+                  <stop offset="100%" stop-color="#10B981" />
+                  <animateTransform 
+                    attributeName="gradientTransform" 
+                    type="translate" 
+                    from="-1.5,-1.5" to="1.5,1.5" 
+                    dur="3s" 
+                    repeatCount="indefinite" />
+                </linearGradient>
+              </defs>
+              <path d="M 45 15 L 45 32 L 40 37 L 40 58 L 45 63 L 45 85" class="logo-path stem" />
+              <path d="M 68 35 L 30 60" class="logo-path diag" />
+              <path d="M 52 45 L 70 63 L 65 68 L 65 85" class="logo-path branch-outer" />
+              <path d="M 40 58 L 58 76 L 53 81 L 53 85" class="logo-path branch-inner" />
+            </svg>
+          </span>
+          Kapsura
+        </div>
+        <span class="footer-tagline">AI-powered business automation.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#industries">Industries</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <span class="footer-copy">&copy; 2026 Kapsura. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
