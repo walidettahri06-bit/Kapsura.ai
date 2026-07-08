@@ -1477,6 +1477,39 @@ ul { list-style: none; }
   background: rgba(255,255,255,0.05);
 }
 
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: var(--danger);
+}
+
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15), 0 0 20px rgba(239, 68, 68, 0.05);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 11px;
+  margin-top: 6px;
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  animation: error-slide-down 0.2s var(--ease-out);
+}
+
+@keyframes error-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .form-group textarea {
   min-height: 110px;
   resize: vertical;

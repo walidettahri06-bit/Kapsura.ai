@@ -272,20 +272,97 @@ document.addEventListener('DOMContentLoaded', () => {
   const formSuccess = document.getElementById('formSuccess');
   const btnSubmit = document.getElementById('btnSubmit');
 
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // Input elements
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const businessInput = document.getElementById('business');
+  const messageInput = document.getElementById('message');
 
-    btnSubmit.disabled = true;
-    btnSubmit.textContent = 'Sending...';
+  const formFields = [nameInput, emailInput, phoneInput, businessInput, messageInput];
 
-    const data = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      business: document.getElementById('business').value,
-      message: document.getElementById('message').value
-    };
+  // Helper: Show validation error
+  function showError(input, message) {
+    const group = input.closest('.form-group');
+    if (!group) return;
 
+    let errorEl = group.querySelector('.error-message');
+    if (!errorEl) {
+      errorEl = document.createElement('span');
+      errorEl.className = 'error-message';
+      group.appendChild(errorEl);
+    }
+    errorEl.textContent = message;
+    input.classList.add('invalid');
+  }
+
+  // Helper: Clear validation error
+  function clearError(input) {
+    const group = input.closest('.form-group');
+    if (!group) return;
+
+    const errorEl = group.querySelector('.error-message');
+    if (errorEl) {
+      errorEl.remove();
+    }
+    input.classList.remove('invalid');
+  }
+
+  // Helper: Validate a single field
+  function validateField(input) {
+    const val = input.value.trim();
+    const id = input.id;
+
+    // Check required
+    if (input.hasAttribute('required') && val === '') {
+      const labelEl = input.previousElementSibling;
+      const labelText = labelEl ? labelEl.textContent : 'This field';
+      showError(input, `${labelText} is required.`);
+      return false;
+    }
+
+    // Email format validation
+    if (id === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(val)) {
+        showError(input, 'Please enter a valid email address.');
+        return false;
+      }
+    }
+
+    // Phone format validation
+    if (id === 'phone') {
+      const phoneRegex = /^\+?[0-9\s\-()]{7,20}$/;
+      if (!phoneRegex.test(val)) {
+        showError(input, 'Please enter a valid phone number (7-20 digits).');
+        return false;
+      }
+    }
+
+    clearError(input);
+    return true;
+  }
+
+  // Attach dynamic real-time validation listeners
+  formFields.forEach(input => {
+    if (!input) return;
+
+    // Trim whitespace and validate on blur
+    input.addEventListener('blur', () => {
+      input.value = input.value.trim();
+      validateField(input);
+    });
+
+    // Clear errors or validate dynamically on input once marked invalid
+    input.addEventListener('input', () => {
+      if (input.classList.contains('invalid')) {
+        validateField(input);
+      }
+    });
+  });
+
+  // Direct fallback submission to n8n webhook
+  async function submitDirectlyToN8n(data) {
     try {
       await fetch('https://sbiixla.app.n8n.cloud/webhook/contact-form', {
         method: 'POST',
@@ -293,13 +370,95 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(data)
       });
     } catch (err) {
-      // Silently handle — show success regardless for UX
-      console.log('Webhook call attempted:', err);
+      console.warn('Direct n8n webhook submission failed:', err);
     }
-
-    // Show success
+    // Transition to success screen
     contactForm.style.display = 'none';
     formSuccess.classList.add('show');
+  }
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Prevent submission if already sending
+    if (btnSubmit.disabled) return;
+
+    // Trim whitespace and validate all fields before submission
+    let isFormValid = true;
+    let firstInvalidInput = null;
+
+    formFields.forEach(input => {
+      if (!input) return;
+      input.value = input.value.trim();
+      if (!validateField(input)) {
+        isFormValid = false;
+        if (!firstInvalidInput) {
+          firstInvalidInput = input;
+        }
+      }
+    });
+
+    // If validation fails, focus the first invalid field and stop submission
+    if (!isFormValid) {
+      if (firstInvalidInput) {
+        firstInvalidInput.focus();
+      }
+      return;
+    }
+
+    // Disable button to prevent double-submit
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = 'Sending...';
+
+    const data = {
+      name: nameInput.value,
+      email: emailInput.value,
+      phone: phoneInput.value,
+      business: businessInput.value,
+      message: messageInput.value
+    };
+
+    try {
+      // Step 1: Submit to server-side validation API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        // Success via server endpoint
+        contactForm.style.display = 'none';
+        formSuccess.classList.add('show');
+      } else if (response.status === 400) {
+        // Server-side validation failed (client bypass attempt)
+        const errData = await response.json();
+        if (errData && errData.errors) {
+          Object.keys(errData.errors).forEach(fieldId => {
+            const inputEl = document.getElementById(fieldId);
+            if (inputEl) {
+              showError(inputEl, errData.errors[fieldId]);
+            }
+          });
+          
+          // Focus the first failed server-validated field
+          const failedFieldId = Object.keys(errData.errors)[0];
+          const failedEl = document.getElementById(failedFieldId);
+          if (failedEl) failedEl.focus();
+        }
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Get My Free Automation Analysis';
+      } else {
+        // Non-400 error (e.g. 500 internal server error or 404 endpoint not found).
+        // Fall back to direct webhook submission to ensure zero downtime.
+        console.warn(`Server validation returned status ${response.status}. Falling back to direct webhook.`);
+        await submitDirectlyToN8n(data);
+      }
+    } catch (err) {
+      // Network error or local file environment -> Fall back to direct submission
+      console.warn('Network error or local static context detected. Falling back to direct webhook:', err);
+      await submitDirectlyToN8n(data);
+    }
   });
 
   // ── Smooth scroll for anchor links ──
